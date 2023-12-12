@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) throws OrderAlreadyAddedException {
         Drink water = new Drink("Water", "Still water", 10);
@@ -17,6 +19,13 @@ public class Main {
 
 
         OrderManager manager = new OrderManager();
+        ArrayList<String> tables = new ArrayList<String>();
+        for (int i = 1; i < 8; i++) {
+            tables.add(Integer.toString(i));
+        }
+
+        System.out.println("Free tables: " + tables);
+
         //обычные заказы
         Order order1 = new RestarauntOrder();
         Order order2 = new RestarauntOrder();
@@ -31,18 +40,26 @@ public class Main {
         order5.add(cola);
 
         //добавление заказа и предметов через менеджера
-        manager.placeOrder("table 1", order1);
-        manager.addItem("table 1", redWine);
-        manager.addItem("table 1", whiteWine);
-        manager.addItem("table 1", pizza1);
-        manager.addItem("table 1", pizza1);
+        String order1Table = "1";
+        manager.placeOrder(order1Table, order1);
+        tables.remove("1");
+        manager.addItem(order1Table, redWine);
+        manager.addItem(order1Table, whiteWine);
+        manager.addItem(order1Table, pizza1);
+        manager.addItem(order1Table, pizza1);
 
-        manager.placeOrder("table 2", order2);
-        manager.addItem("table 2", water);
-        manager.addItem("table 2", cola);
-        manager.addItem("table 2", pizza1);
 
-        manager.placeOrder("table 3", order3);
+        String order2Table = "3";
+        tables.remove("3");
+        manager.placeOrder(order2Table, order2);
+        manager.addItem(order2Table, water);
+        manager.addItem(order2Table, cola);
+        manager.addItem(order2Table, pizza1);
+
+
+        String order3Table = "4";
+        tables.remove("4");
+        manager.placeOrder(order3Table, order3);
 
         manager.placeOrder("street 1", order4);
         manager.addItem("street 1", beer);
@@ -56,9 +73,9 @@ public class Main {
             System.out.println(e.getMessage() + "\n");
         }
 
-        System.out.println("Order 1: " + manager.getOrder("table 1"));
-        System.out.println("Order 2: " + manager.getOrder("table 2"));
-        System.out.println("Order 3: " + manager.getOrder("table 3"));
+        System.out.println("Order 1: " + manager.getOrder("1"));
+        System.out.println("Order 2: " + manager.getOrder("3"));
+        System.out.println("Order 3: " + manager.getOrder("4"));
         System.out.println("Order 4: " + manager.getOrder("street 1"));
         System.out.println("Order 5: " + manager.getOrder("street 2") + "\n");
 
@@ -66,5 +83,7 @@ public class Main {
 
         System.out.println("All internet orders summary is : " + manager.getAllIternetOrdersCost());
 
+        System.out.println("Free tables: " + tables);
     }
 }
+
