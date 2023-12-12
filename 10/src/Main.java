@@ -20,22 +20,6 @@ public class Main {
         else
             return onesAmount();
     }
-
-    /*public static void nechet(){
-        //номер 12 - вывод каждого нечетного, концом яв. 0
-        int num = scanner.nextInt();
-        if (num == 0)
-            return;
-        else if (num % 2 == 1){
-            System.out.println(num);
-            nechet();
-        }
-        else
-            nechet();
-    }
-    public static void nechetIndex(){
-
-    }*/
     public static void leftToRight(int num){
         if (num % 10 == 0){
             return;
@@ -54,12 +38,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
-        //System.out.println(onesAmount());
-        //leftToRight(12345678);
+        System.out.println("onesAmount:");
+        System.out.println(onesAmount());
+        System.out.println("leftToRight:");
+        leftToRight(12345678);
+        System.out.println("rightToLeft");
         rightToLeft(12345);
 
     }
-
-
 }
